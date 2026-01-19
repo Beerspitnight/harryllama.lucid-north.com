@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Llama | Survey Results: The Cost of Manual Scheduling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MHHLMPTX');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Expert Style Injections -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #4A5568;
+        }
+        .header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+        }
+        .btn-primary {
+            /* Brand Color: Accent Orange (#E06B1E) gradient */
+            background: linear-gradient(to right, #EF8A30, #E06B1E);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(224, 122, 66, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(224, 122, 66, 0.4);
+        }
+        .hero-section {
+            /* Brand Color: Purple (#4A3F7A) background for a more impactful start */
+            background: #4A3F7A;
+            color: white;
+            padding: 8rem 0 6rem; /* Slightly reduced bottom padding to lead into data */
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #FFFFFF; /* White text on purple */
+            line-height: 1.1;
+        }
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-top: 1rem;
+            color: #D3D3D3; /* Light gray for contrast */
+        }
+        section {
+            padding: 6rem 0;
+        }
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #2D3748;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .research-section {
+            background-color: #ffffff;
+        }
+        .research-charts .mermaid {
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+            padding: 1rem;
+            background-color: #FFFFFF;
+        }
+        .research-content h3 {
+            /* Brand Color: Purple (#4A3F7A) */
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4A3F7A;
+            margin-bottom: 1rem;
+        }
+        .savings-section {
+            /* Brand Color: Orange (#EF8A30) for call to action */
+            background-color: #EF8A30;
+        }
+        .savings-section h2, .savings-section p {
+            color: #ffffff;
+        }
+        .form-section {
+             background-color: #ffffff;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #E2E8F0;
+        }
+        .footer {
+            background-color: #2D3748;
+            color: #A0AEC0;
+            padding: 4rem 0;
+        }
+        .data-fact {
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            /* Brand Color: Accent Orange (#E06B1E) */
+            background-color: #E06B1E;
+            color: white;
+            box-shadow: 0 15px 30px rgba(224, 107, 30, 0.3);
+        }
+        .data-fact strong {
+            display: block;
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .data-fact p {
+            font-size: 1.25rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHHLMPTX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="nav-left">
+                <a href="#" class="nav-logo">
+                    <img src="images/static/hl_transparent.png" alt="Harry Llama Logo">
+                </a>
+            </div>
+            <ul class="nav-menu hidden md:flex space-x-8 text-gray-700 font-semibold">
+                <li><a href="#research" class="hover:text-[#4A3F7A]">The Research</a></li>
+                <li><a href="#methods" class="hover:text-[#4A3F7A]">Scheduling Methods</a></li>
+                <li><a href="#levels" class="hover:text-[#4A3F7A]">School Burden</a></li>
+            </ul>
+            <div class="nav-right hidden md:block">
+                <a href="#demo-form" class="btn-primary">Calculate Your Savings</a>
+            </div>
+            <button id="nav-toggle" class="md:hidden nav-toggle" aria-label="Open navigation">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="#research" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">The Research</a>
+            <a href="#methods" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">Scheduling Methods</a>
+            <a href="#levels" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">School Burden</a>
+            <a href="#demo-form" class="block mt-4 btn-primary text-center">Calculate Your Savings</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container mx-auto px-6 text-center">
+                <div class="hero-content">
+                    <h1 class="text-5xl lg:text-6xl">The Hidden Cost of Coverage.</h1>
+                    <p class="text-xl lg:text-2xl mt-4 max-w-3xl mx-auto">Survey results reveal how manual substitute scheduling is wasting administrative time and budget across the country.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="research-section">
+            <div class="container mx-auto px-6">
+                <h2>The Data Doesn't Lie: Time Lost to Manual Scheduling</h2>
+
+                <!-- Research Block 1: The Annual Time Waste (Factoid) -->
+                <div class="mb-16">
+                    <div class="data-fact max-w-4xl mx-auto">
+                        <strong>99+ Hours Annually</strong>
+                        <p>The average administrator spends the equivalent of 12 full workdays every year just tracking and assigning substitute coverage.</p>
+                    </div>
+                </div>
+
+                <!-- Research Block 2: The Friday Rush -->
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                     <div class="research-content text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-[#4A3F7A] mb-4">The "Friday Rush": A 41.7% Spike in Work.</h3>
+                        <p>The manual burden is not consistent. Our survey shows that the time spent on sub coverage **spikes to 57.8 minutes on Fridays** compared to **40.8 minutes on Tuesdays**. This 41.7% surge in administrative work pulls you away from closing out the week with students and staff.</p>
+                    </div>
+                    <div class="research-charts flex justify-center">
+                        <div class="mermaid w-full">
+                            %%{init: { "theme": "base", "themeVariables": { "primaryColor": "#EF8A30", "primaryTextColor": "#FFFFFF", "primaryBorderColor": "#4A3F7A", "lineColor": "#4A3F7A", "secondaryColor": "#4A3F7A", "tertiaryColor": "#88A2B8" }}}%%
+                            barChart
+                                title Average Time Spent on Sub Scheduling (Minutes)
+                                axis:
+                                    title: Time in Minutes
+                                    min: 0
+                                    max: 70
+                                section The Rush
+                                    Friday: 57.8
+                                    Tuesday: 40.8
+                        </div>
+                    </div>
+                </div>
+
+                <hr id="methods" class="my-16 border-t-2 border-gray-200">
+
+                <!-- Research Block 3: The Cost of Method -->
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                     <div class="research-charts flex justify-center md:order-first">
+                        <div class="mermaid w-full">
+                            %%{init: { "theme": "base", "themeVariables": { "primaryColor": "#4A3F7A", "primaryTextColor": "#FFFFFF", "primaryBorderColor": "#EF8A30", "lineColor": "#88A2B8", "secondaryColor": "#EF8A30", "tertiaryColor": "#E06B1E" }}}%%
+                            barChart
+                                title Weekly Time Waste by Scheduling Method (Minutes)
+                                axis:
+                                    title: Total Weekly Minutes
+                                    min: 0
+                                    max: 375
+                                section Method
+                                    Pen and Paper: 347
+                                    Combination (AMS + Manual): 253
+                                    Spreadsheet: 121.5
+                        </div>
+                    </div>
+                    <div class="research-content text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-[#4A3F7A] mb-4">Paper is 2.85x Slower than Spreadsheets.</h3>
+                        <p>The method matters. Administrators using **Pen and Paper** spend **347 minutes** a week on scheduling, nearly double the time of "Combination" methods and **2.85 times** more than those using a "Spreadsheet". Automation is the only path to zero minutes spent.</p>
+                    </div>
+                </div>
+
+                <hr id="levels" class="my-16 border-t-2 border-gray-200">
+
+                 <!-- Research Block 4: Time by School Level -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                     <div class="research-content text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-[#4A3F7A] mb-4">The Middle School Time Sink.</h3>
+                        <p>When analyzing the burden by school level, **Middle School administrators reported the highest time waste**, averaging almost **349 minutes** per week. High School administrators, likely due to larger scale and more dedicated support staff, see the least time spent.</p>
+                    </div>
+                    <div class="research-charts flex justify-center">
+                        <div class="mermaid w-full">
+                            %%{init: { "theme": "base", "themeVariables": { "primaryColor": "#E06B1E", "primaryTextColor": "#FFFFFF", "primaryBorderColor": "#4A3F7A", "lineColor": "#4A3F7A", "secondaryColor": "#88A2B8", "tertiaryColor": "#EF8A30" }}}%%
+                            barChart
+                                title Weekly Time Waste by School Level (Minutes)
+                                axis:
+                                    title: Total Weekly Minutes
+                                    min: 0
+                                    max: 400
+                                section School Level
+                                    Middle: 348.75
+                                    Elementary: 250
+                                    K-12: 262.5
+                                    High: 123
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="savings-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl">Ready to Reclaim Your 99+ Hours?</h2>
+                <p class="text-xl mt-4 max-w-2xl mx-auto">Stop managing absences manually. Harry Llama uses AI to solve the scheduling puzzle instantly, turning minutes into seconds.</p>
+                <a href="#demo-form" class="btn-primary mt-8 inline-block">Calculate My Savings</a>
+            </div>
+        </section>
+
+        <section id="demo-form" class="form-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl">Start Your Zero-Time-Spent Schedule</h2>
+                <form id="contact-form" class="contact-form mt-8">
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" name="full-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="work-email">Work Email</label>
+                        <input type="email" id="work-email" name="work-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="school-name">School / District Name</label>
+                        <input type="text" id="school-name" name="school-name" required>
+                    </div>
+                    <button type="submit" class="btn-primary w-full mt-4">Schedule My Free Demo</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container mx-auto px-6 text-center">
+            <div class="footer-logo">
+                <a href="#">
+                   <img src="images/static/hl_transparent.png" alt="Harry Llama Logo" class="mx-auto">
+                </a>
+            </div>
+            <div class="footer-legal my-4">
+                <p>&copy; 2025 Lucid North. All Rights Reserved.</p>
+                <a href="#" class="mx-2">Privacy Policy</a> | <a href="#" class="mx-2">Terms of Service</a>
+            </div>
+            <div class="footer-contact flex justify-center items-center space-x-4">
+                <a href="#" class="js-mailto" data-user="admin" data-domain="lucid-north.com">Email us</a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+         // Mermaid Initialization
+         mermaid.initialize({
+             startOnLoad: true,
+             theme: 'base',
+             themeVariables: {
+                 'primaryColor': '#4A3F7A', /* Purple for primary elements */
+                 'primaryTextColor': '#FFFFFF',
+                 'secondaryColor': '#EF8A30', /* Orange for secondary elements/bars */
+                 'tertiaryColor': '#E06B1E', /* Accent Orange */
+                 'lineColor': '#88A2B8', /* Lucid North Solution gray-blue for lines/axes */
+                 'fontFamily': 'Inter, sans-serif'
+             }
+         });
+
+         // Mobile Menu Toggle
+         const navToggle = document.getElementById('nav-toggle');
+         const mobileMenu = document.getElementById('mobile-menu');
+         navToggle.addEventListener('click', () => {
+             mobileMenu.classList.toggle('hidden');
+         });
+     </script>
+
+    <!-- JS-built mailto helper (keeps email out of static HTML) -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var els = document.querySelectorAll('.js-mailto');
+        els.forEach(function (el) {
+          var user = el.dataset.user || 'admin';
+          var domain = el.dataset.domain || 'lucid-north.com';
+          var email = user + '@' + domain;
+          el.textContent = email;
+          el.href = 'mailto:' + email;
+          el.setAttribute('aria-label', 'Email ' + email);
+        });
+      });
+    </script>
+</body>
+</html>

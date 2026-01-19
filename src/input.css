@@ -1,0 +1,445 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== ENHANCED STYLES SECTION WITH MORE COLOR OPTIONS ===== */
+
+/*
+  TO CHANGE COLOR THEMES:
+  1. Comment out the current theme variables in :root
+  2. Uncomment your preferred theme below
+  3. Run: npm run build
+  4. Refresh your browser
+*/
+
+:root {
+  /* ========== THEME 1: LUCID NORTH BLUE/TEAL (DEFAULT) ========== */
+  --primary-color: #1996A3;
+  --secondary-color: #38A2B8;
+  --accent-color: #E06B1E;
+  --background-color: #1F2437;
+  --background-secondary: #181C2B;
+  --surface-color: #2D3748;
+  --text-primary: #F3F4F6;
+  --text-secondary: #D1D5DB;
+  --border-color: rgba(56, 162, 184, 0.3);
+
+  /* ========== THEME 2: DEEP PURPLE/PINK ========== */
+  /*
+  --primary-color: #7C3AED;
+  --secondary-color: #A855F7;
+  --accent-color: #EC4899;
+  --background-color: #1F1B2E;
+  --background-secondary: #151226;
+  --surface-color: #2D2A3E;
+  --text-primary: #F3F4F6;
+  --text-secondary: #D1D5DB;
+  --border-color: rgba(168, 85, 247, 0.3);
+  */
+
+  /* ========== THEME 3: FOREST GREEN/EMERALD ========== */
+  /*
+  --primary-color: #059669;
+  --secondary-color: #10B981;
+  --accent-color: #F59E0B;
+  --background-color: #1F2937;
+  --background-secondary: #111827;
+  --surface-color: #374151;
+  --text-primary: #F3F4F6;
+  --text-secondary: #D1D5DB;
+  --border-color: rgba(16, 185, 129, 0.3);
+  */
+
+  /* ========== THEME 4: CRIMSON RED/ORANGE ========== */
+  /*
+  --primary-color: #DC2626;
+  --secondary-color: #EF4444;
+  --accent-color: #F97316;
+  --background-color: #1F1F1F;
+  --background-secondary: #171717;
+  --surface-color: #262626;
+  --text-primary: #F3F4F6;
+  --text-secondary: #D1D5DB;
+  --border-color: rgba(239, 68, 68, 0.3);
+  */
+
+  /* ========== THEME 5: OCEAN BLUE/CYAN ========== */
+  /*
+  --primary-color: #0891B2;
+  --secondary-color: #06B6D4;
+  --accent-color: #F59E0B;
+  --background-color: #0F172A;
+  --background-secondary: #020617;
+  --surface-color: #1E293B;
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --border-color: rgba(6, 182, 212, 0.3);
+  */
+
+  /* ========== THEME 6: SUNSET ORANGE/PINK ========== */
+  /*
+  --primary-color: #EA580C;
+  --secondary-color: #FB923C;
+  --accent-color: #EC4899;
+  --background-color: #1C1917;
+  --background-secondary: #0C0A09;
+  --surface-color: #292524;
+  --text-primary: #FEF7F0;
+  --text-secondary: #E7E5E4;
+  --border-color: rgba(251, 146, 60, 0.3);
+  */
+
+  /* ========== THEME 7: ROYAL PURPLE/GOLD ========== */
+  /*
+  --primary-color: #6B21A8;
+  --secondary-color: #9333EA;
+  --accent-color: #F59E0B;
+  --background-color: #1E1B2E;
+  --background-secondary: #16132A;
+  --surface-color: #2A2438;
+  --text-primary: #FAF7FF;
+  --text-secondary: #E5E1FF;
+  --border-color: rgba(147, 51, 234, 0.3);
+  */
+
+  /* ========== THEME 8: MIDNIGHT BLUE/SILVER ========== */
+  /*
+  --primary-color: #1E40AF;
+  --secondary-color: #3B82F6;
+  --accent-color: #6B7280;
+  --background-color: #0F172A;
+  --background-secondary: #020617;
+  --surface-color: #1E293B;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --border-color: rgba(59, 130, 246, 0.3);
+  */
+}
+
+/* Font Configuration */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Sora', sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.fade-in-delay {
+  animation: fadeIn 1s 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* ===== ENHANCED COMPONENT STYLES ===== */
+
+/* Improved content container with better centering and styling */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 2px solid var(--border-color);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.3),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, var(--surface-color) 0%, rgba(var(--surface-color), 0.8) 100%);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.content-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+  border-radius: 1.5rem;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* Enhanced calculator container */
+.calculator-container {
+  background: var(--background-secondary);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+}
+
+/* ===== NAVIGATION STYLES ===== */
+.nav-link {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+  background: rgba(var(--primary-color), 0.1);
+}
+
+/* ===== FORM STYLES ===== */
+.form-input {
+  background: var(--surface-color);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.1);
+  outline: none;
+}
+
+/* ===== SCROLLYTELLING STYLES ===== */
+.tab-btn.active {
+    @apply bg-teal-500 text-white;
+}
+
+.scrolly-step {
+    opacity: 0.3;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.scrolly-step.active {
+    opacity: 1;
+    @apply bg-white shadow-lg;
+}
+
+.scrolly-diagram {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.scrolly-diagram.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .content-container {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .calculator-container {
+    padding: 1.5rem;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.slide-in {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-gradient {
+  border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) 1;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(var(--primary-color), 0.3);
+}
+
+/* ===== PROGRESSIVE BRAND REVEAL STYLES ===== */
+
+/* Problem carousel animation */
+@keyframes carouselFade {
+  0%, 65% { opacity: 1; }
+  70%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.problem-carousel {
+  position: relative;
+}
+
+.carousel-item {
+  animation: carouselFade 10s infinite;
+}
+
+.carousel-item:nth-child(2) {
+  animation-delay: 5s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Enhanced CTA buttons with Harry Llama personality */
+.btn-harry-llama {
+  background: linear-gradient(135deg, #E06B1E 0%, #EF8A30 100%);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-harry-llama::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-harry-llama:hover::before {
+  left: 100%;
+}
+
+.btn-harry-llama:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(224, 107, 30, 0.3);
+}
+
+/* Professional to playful transition gradients */
+.brand-transition-bg {
+  background: linear-gradient(
+    180deg,
+    #f9fafb 0%,
+    #f3f4f6 25%,
+    #6b7280 50%,
+    #374151 75%,
+    #111827 100%
+  );
+}
+
+/* Enhanced card hover effects */
+.feature-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(239, 138, 48, 0.2);
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #E06B1E, #EF8A30, #4A3F7A);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover::after {
+  opacity: 1;
+}
+
+/* Smooth section transitions */
+.section-transition {
+  position: relative;
+  z-index: 1;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    transparent 100%
+  );
+  z-index: -1;
+}

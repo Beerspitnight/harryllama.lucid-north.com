@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substitute Coverage Cost Calculator</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Tailwind CSS Production Build -->
+    <link rel="stylesheet" href="dist/output.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MHHLMPTX');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- THEME-AWARE STYLES -->
+    <style>
+        /* Define CSS variables for both themes. Light theme is the default. */
+        :root {
+            --body-bg: linear-gradient(135deg, #ffffff 0%, #fafafa 50%, #f9f9f9 100%);
+            --text-primary: #1f2437;
+            --text-secondary: #4a5568;
+            --text-tertiary: #4a5568;
+            --card-bg: rgba(255, 255, 255, 0.97);
+            --card-shadow: 0 20px 40px rgba(56, 162, 184, 0.1), 0 5px 15px rgba(0,0,0,0.05);
+            --card-border: 1px solid rgba(56, 162, 184, 0.2);
+            --input-bg: #ffffff;
+            --input-border: 2px solid rgba(56, 162, 184, 0.3);
+            --row-bg: rgba(249, 250, 251, 0.7);
+            --row-border: 1px solid rgba(56, 162, 184, 0.2);
+            --row-hover-bg: rgba(239, 138, 48, 0.05);
+            --row-hover-border: rgba(239, 138, 48, 0.4);
+            --form-section-bg: #f3f4f6; /* A slightly darker white */
+            --form-section-border: #e5e7eb;
+            --header-bg: rgba(255, 255, 255, 0.9);
+            --header-border: #e5e7eb;
+            --footer-bg: #181C2B;
+            --footer-text: #d1d5db;
+            --footer-border: #374151;
+        }
+
+        /* Use a media query to override the variables for dark mode. */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --body-bg: #1F2437;
+                --text-primary: #F3F4F6;
+                --text-secondary: #D1D5DB;
+                --text-tertiary: #9ca3af;
+                --card-bg: rgba(31, 36, 55, 0.8);
+                --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                --card-border: 1px solid rgba(56, 162, 184, 0.3);
+                --input-bg: #2D3748;
+                --input-border: 2px solid rgba(56, 162, 184, 0.4);
+                --row-bg: rgba(45, 55, 72, 0.5);
+                --row-border: 1px solid rgba(56, 162, 184, 0.2);
+                --row-hover-bg: rgba(239, 138, 48, 0.1);
+                --row-hover-border: rgba(239, 138, 48, 0.5);
+                --form-section-bg: #181C2B;
+                --form-section-border: #2d3748;
+                --header-bg: rgba(31, 36, 55, 0.8);
+                --header-border: #374151;
+            }
+        }
+
+        /* Update component styles to use the variables. */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--body-bg);
+            color: var(--text-secondary);
+            min-height: 100vh;
+        }
+        header {
+            background-color: var(--header-bg);
+            border-color: var(--header-border);
+        }
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            border-top-color: var(--header-border); /* Use light border for footer top */
+        }
+        footer .border-gray-700 { border-color: var(--footer-border); } /* Target inner footer border */
+        .text-gray-800 { color: var(--text-primary); }
+        .text-gray-900 { color: var(--text-primary); }
+        .text-gray-600 { color: var(--text-tertiary); }
+        .text-gray-700 { color: var(--text-secondary); }
+
+        .hero-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 0.9;
+            background: linear-gradient(135deg, #EF8A30 0%, #E06B1E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            color: var(--text-secondary);
+        }
+        .calculator-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: var(--card-border);
+            box-shadow: var(--card-shadow);
+        }
+        .input-field {
+            background: var(--input-bg);
+            border: var(--input-border);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #EF8A30;
+            box-shadow: 0 0 0 3px rgba(239, 138, 48, 0.1);
+            outline: none;
+        }
+        .day-row {
+            background: var(--row-bg);
+            border: var(--row-border);
+            transition: all 0.3s ease;
+        }
+        .day-row:hover {
+            border-color: var(--row-hover-border);
+            background: var(--row-hover-bg);
+        }
+        .bg-gray-100 { /* For the admin details section */
+            background-color: var(--form-section-bg);
+            border-color: var(--form-section-border);
+        }
+        .calculate-btn {
+            background: linear-gradient(135deg, #E06B1E 0%, #EF8A30 100%);
+            transition: all 0.3s ease;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(224, 107, 30, 0.4);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #EF8A30 0%, #E06B1E 100%);
+            box-shadow: 0 25px 50px rgba(224, 107, 30, 0.3);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHHLMPTX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Navigation Header -->
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="index.html">
+                        <img src="images/static/hl_transparent.png" alt="Harry_Llama" class="h-8 mr-3">
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-[#EF8A30] transition-colors">Home</a>
+                    <a href="results.html" class="text-gray-600 hover:text-[#EF8A30] transition-colors">The Numbers</a>
+              <!--  <a href="pricing.html" class="text-gray-600 hover:text-[#EF8A30] transition-colors">Pricing</a> -->
+                    <a href="index.html#signup" class="bg-[#E06B1E] hover:bg-[#EF8A30] text-white font-bold py-2 px-6 rounded-lg transition-all duration-300">Sign Up</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 md:py-24 text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="mb-8">
+                <img src="images/static/hl_transparent.png" alt="Harry Llama - The Intelligent Scheduler" class="max-w-xl mx-auto mb-8">
+            </div>
+            <h1 class="hero-title mb-6">Calculate Your Savings</h1>
+            <h2 class="hero-subtitle mb-8">Discover Your Hidden Costs</h2>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Find out exactly how much leadership salary your school wastes on manual substitute scheduling
+            </p>
+            <div class="w-24 h-1 bg-gradient-to-r from-[#EF8A30] to-[#E06B1E] mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- Main Calculator -->
+    <main class="py-8 md:py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="calculator-card rounded-2xl shadow-2xl p-8 md:p-12 fade-in">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                        Your <span class="text-[#EF8A30]">Custom ROI</span> Calculation
+                    </h3>
+                    <p class="text-gray-600 text-lg">Input your weekly scheduling time to see the annual cost</p>
+                </div>
+
+                <!-- Daily Time Investment Section -->
+                <div class="mb-12">
+                    <h4 class="text-xl font-bold text-gray-900 mb-6 text-center">Daily Time Investment</h4>
+                    <div class="space-y-4">
+                        <div class="day-row rounded-lg p-4 flex items-center justify-between">
+                            <label for="monday" class="sr-only">Monday Minutes</label>
+                            <span class="text-gray-700 font-semibold w-24" id="label-monday">Monday</span>
+                            <div class="flex items-center space-x-3">
+                                <input type="number" id="monday" class="input-field w-20 px-3 py-2 rounded-lg text-gray-800 font-semibold text-center" placeholder="0" aria-labelledby="label-monday">
+                                <span class="text-gray-600 text-sm">min</span>
+                                <button id="fill-week" class="bg-[#38A2B8] hover:bg-[#2D8A99] text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-sm">
+                                    Fill Week
+                                </button>
+                            </div>
+                        </div>
+                        <div class="day-row rounded-lg p-4 flex items-center justify-between">
+                            <label for="tuesday" class="sr-only">Tuesday Minutes</label>
+                            <span class="text-gray-700 font-semibold w-24" id="label-tuesday">Tuesday</span>
+                            <div class="flex items-center space-x-3">
+                                <input type="number" id="tuesday" class="input-field w-20 px-3 py-2 rounded-lg text-gray-800 font-semibold text-center" placeholder="0" aria-labelledby="label-tuesday">
+                                <span class="text-gray-600 text-sm">min</span>
+                            </div>
+                        </div>
+                        <div class="day-row rounded-lg p-4 flex items-center justify-between">
+                            <label for="wednesday" class="sr-only">Wednesday Minutes</label>
+                            <span class="text-gray-700 font-semibold w-24" id="label-wednesday">Wednesday</span>
+                            <div class="flex items-center space-x-3">
+                                <input type="number" id="wednesday" class="input-field w-20 px-3 py-2 rounded-lg text-gray-800 font-semibold text-center" placeholder="0" aria-labelledby="label-wednesday">
+                                <span class="text-gray-600 text-sm">min</span>
+                            </div>
+                        </div>
+                        <div class="day-row rounded-lg p-4 flex items-center justify-between">
+                            <label for="thursday" class="sr-only">Thursday Minutes</label>
+                            <span class="text-gray-700 font-semibold w-24" id="label-thursday">Thursday</span>
+                            <div class="flex items-center space-x-3">
+                                <input type="number" id="thursday" class="input-field w-20 px-3 py-2 rounded-lg text-gray-800 font-semibold text-center" placeholder="0" aria-labelledby="label-thursday">
+                                <span class="text-gray-600 text-sm">min</span>
+                            </div>
+                        </div>
+                        <div class="day-row rounded-lg p-4 flex items-center justify-between">
+                            <label for="friday" class="sr-only">Friday Minutes</label>
+                            <span class="text-gray-700 font-semibold w-24" id="label-friday">Friday</span>
+                            <div class="flex items-center space-x-3">
+                                <input type="number" id="friday" class="input-field w-20 px-3 py-2 rounded-lg text-gray-800 font-semibold text-center" placeholder="0" aria-labelledby="label-friday">
+                                <span class="text-gray-600 text-sm">min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salary Section -->
+                <div class="mb-12">
+                    <h4 class="text-xl font-bold text-gray-900 mb-6 text-center">Administrator Details</h4>
+                    <div class="bg-gray-100 rounded-xl p-6 space-y-6 border border-gray-200">
+                        <div>
+                            <label for="salary" class="block text-gray-700 font-semibold mb-3">Annual Salary</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 font-semibold">$</span>
+                                <input type="number" id="salary" class="input-field w-full pl-8 pr-4 py-3 rounded-lg text-gray-800 font-semibold" placeholder="125,000" aria-label="Annual Salary">
+                            </div>
+                        </div>
+                        <fieldset class="mb-6">
+                            <legend class="block text-gray-700 font-semibold mb-3">Contract Type</legend>
+                            <div class="flex space-x-6">
+                                <label class="flex items-center cursor-pointer" for="contract-10">
+                                    <input type="radio" name="contract" value="10" id="contract-10" class="sr-only">
+                                    <span class="w-5 h-5 border-2 border-[#38A2B8] rounded-full mr-3 flex items-center justify-center transition-all duration-300">
+                                        <span class="w-2 h-2 bg-[#38A2B8] rounded-full opacity-0 transition-opacity duration-300"></span>
+                                    </span>
+                                    <span class="text-gray-700 font-semibold">10-Month Contract</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer" for="contract-12">
+                                    <input type="radio" name="contract" value="12" id="contract-12" class="sr-only" checked>
+                                    <span class="w-5 h-5 border-2 border-[#38A2B8] rounded-full mr-3 flex items-center justify-center transition-all duration-300">
+                                        <span class="w-2 h-2 bg-[#38A2B8] rounded-full transition-opacity duration-300"></span>
+                                    </span>
+                                    <span class="text-gray-700 font-semibold">12-Month Contract</span>
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!-- Calculate Button -->
+                <div class="text-center mb-12">
+                    <button id="calculate-btn" class="calculate-btn text-white font-bold py-4 px-12 rounded-xl text-lg shadow-2xl">
+                        <svg class="w-6 h-6 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                        Calculate Your Annual Cost
+                    </button>
+                </div>
+
+                <!-- Results Section -->
+                <div id="result-container" class="hidden">
+                    <div class="result-card rounded-2xl p-8 md:p-12 text-center">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Your Annual Waste</h3>
+                        <div id="result-amount" class="text-5xl md:text-6xl font-bold text-white mb-4">$0</div>
+                        <p class="text-lg md:text-xl text-orange-100 mb-6 max-w-2xl mx-auto">
+                            of valuable leadership salary is wasted on manual substitute scheduling every year
+                        </p>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-8">
+                            <p class="text-lg font-semibold text-white mb-2">
+                                🚀 Harry Llama can automate this entire process
+                            </p>
+                            <p class="text-orange-100">
+                                Imagine redirecting this time toward student outcomes and school leadership
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Lead Capture -->
+                    <div class="bg-gray-800 backdrop-blur-md rounded-2xl p-8 md:p-12 mt-8">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+                                Get <span class="text-[#EF8A30]">Early Access</span>
+                            </h3>
+                            <p class="text-lg text-gray-300">
+                                Join the waitlist for personalized insights and priority access to Harry Llama
+                            </p>
+                        </div>
+
+                        <!-- Zoho Form Embed -->
+                        <div class="max-w-2xl mx-auto">
+                            <iframe aria-label='Schedule a Demo of Harry Llama' frameborder="0" style="height:500px;width:99%;border:none;" src='https://forms.zohopublic.com/adminlucid1/form/EventRegistration/formperma/fKhsmoSdPCn-uA-agSnCiAxwFc7j2NyKDbYmjAGiWHc'></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 mt-20 border-t-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
+                <div class="text-center md:text-left">
+                    <img src="images/static/ln_horizontal_LIGHT_logo.png" alt="Lucid North Logo" class="h-12 mx-auto md:mx-0 mb-4">
+                    <p class="text-gray-600 text-sm">Smarter Solutions ✦ Smarter Schools</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <img src="images/static/hl_transparent.png" alt="Harry Llama - The Intelligent Scheduler" class="h-16 mx-auto md:ml-auto md:mr-0">
+                    <p class="text-gray-500 text-xs mt-2">A Lucid North Solution</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Lucid North, LLC. All Rights Reserved. | Harry Llama is a Lucid North Solution</p>
+                <p class="mt-2">Calculations based on 180-day school year and administrator work year assumptions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA COLLECTION SYSTEM ---
+        let sessionData = {
+            sessionId: generateSessionId(),
+            startTime: Date.now(),
+            interactions: [],
+            calculations: [],
+            userAgent: navigator.userAgent,
+            screenResolution: `${screen.width}x${screen.height}`,
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            language: navigator.language,
+            referrer: document.referrer,
+            pageLoadTime: null
+        };
+
+        // Re-declaring tracking functions here as they were in the original file scope
+        function generateSessionId() {
+            return 'calc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        window.addEventListener('load', () => {
+            sessionData.pageLoadTime = Date.now() - sessionData.startTime;
+            trackEvent('page_loaded', { loadTime: sessionData.pageLoadTime });
+        });
+
+        function trackEvent(eventType, eventData = {}) {
+            const event = {
+                timestamp: Date.now(),
+                type: eventType,
+                data: eventData,
+                timeOnPage: Date.now() - sessionData.startTime
+            };
+
+            sessionData.interactions.push(event);
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventType, {
+                    custom_parameter_1: JSON.stringify(eventData),
+                    session_id: sessionData.sessionId,
+                    time_on_page: event.timeOnPage
+                });
+            }
+        }
+
+        function collectCalculationData(inputData, result) {
+            const calculationData = {
+                sessionId: sessionData.sessionId,
+                timestamp: Date.now(),
+                timeOnPageBeforeCalculation: Date.now() - sessionData.startTime,
+                inputs: inputData,
+                result: result,
+                userInfo: {
+                    userAgent: navigator.userAgent,
+                    screenResolution: sessionData.screenResolution,
+                    timeZone: sessionData.timeZone,
+                    language: sessionData.language,
+                    referrer: sessionData.referrer,
+                    windowSize: `${window.innerWidth}x${window.innerHeight}`,
+                    colorDepth: screen.colorDepth,
+                    platform: navigator.platform,
+                    cookieEnabled: navigator.cookieEnabled,
+                    onlineStatus: navigator.onLine
+                },
+                pageMetrics: {
+                    scrollPosition: window.pageYOffset,
+                    documentHeight: document.documentElement.scrollHeight,
+                    viewportHeight: window.innerHeight,
+                    totalInteractions: sessionData.interactions.length
+                }
+            };
+
+            sessionData.calculations.push(calculationData);
+
+            // Use dataLayer.push instead of gtag for GTM event tracking
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'roi_calculate', // This MUST match the name of your Custom Event Trigger in GTM
+                'roi_data': {
+                    'total_minutes': inputData.weeklyMinutes,
+                    'salary_value': inputData.salary,
+                    'cost_per_year': result,
+                    // You can add other variables here if you create them in GTM
+                }
+            });
+
+            sendDataToServer('calculation', calculationData);
+            return calculationData;
+        }
+
+        function getSalaryRange(salary) {
+            if (salary < 50000) return 'under_50k';
+            if (salary < 75000) return '50k_to_75k';
+            if (salary < 100000) return '75k_to_100k';
+            if (salary < 125000) return '100k_to_125k';
+            if (salary < 150000) return '125k_to_150k';
+            return 'over_150k';
+        }
+
+        function sendDataToServer(dataType, data) {
+            fetch('https://formspree.io/f/mqalwzqp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    subject: `Calculator ${dataType} - ${sessionData.sessionId}`,
+                    analytics_type: dataType,
+                    analytics_data: JSON.stringify(data),
+                    session_id: sessionData.sessionId,
+                    timestamp: new Date().toISOString()
+                })
+            }).catch(error => {
+                console.log('Analytics tracking failed:', error);
+            });
+        }
+
+        async function getUserLocation() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const locationData = await response.json();
+                return {
+                    city: locationData.city,
+                    region: locationData.region,
+                    country: locationData.country_name,
+                    country_code: locationData.country_code,
+                    postal: locationData.postal,
+                    timezone: locationData.timezone
+                };
+            } catch (error) {
+                console.error('Error getting location:', error);
+                return null;
+            }
+        }
+
+        // Track user interactions
+        document.addEventListener('click', (e) => {
+            trackEvent('click', {
+                element: e.target.tagName,
+                id: e.target.id,
+                className: e.target.className,
+                text: e.target.textContent.slice(0, 50)
+            });
+        });
+
+        document.addEventListener('input', (e) => {
+            if (e.target.type === 'number' || e.target.type === 'email' || e.target.type === 'text') {
+                trackEvent('input_change', {
+                    field: e.target.id,
+                    hasValue: e.target.value.length > 0,
+                    valueLength: e.target.value.length
+                });
+            }
+        });
+
+        // Main calculator logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const calculateBtn = document.getElementById('calculate-btn');
+            const resultContainer = document.getElementById('result-container');
+            const resultAmountEl = document.getElementById('result-amount');
+            const fillButton = document.getElementById('fill-week');
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            document.querySelectorAll('input[name="contract"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    document.querySelectorAll('input[name="contract"]').forEach(r => {
+                        const dot = r.parentElement.querySelector('span span');
+
+                        if (dot) {
+                            if (r.checked) {
+                                dot.style.opacity = '1';
+                            } else {
+                                dot.style.opacity = '0';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Initialize the 12-month contract as checked
+            const twelveMonthRadio = document.querySelector('input[name="contract"][value="12"]');
+            if (twelveMonthRadio) {
+                twelveMonthRadio.checked = true;
+                const dot = twelveMonthRadio.parentElement.querySelector('span span');
+                if (dot) {
+                    dot.style.opacity = '1';
+                }
+            }
+
+            trackEvent('page_visit', {
+                url: window.location.href,
+                title: document.title
+            });
+
+            const calculateCost = async () => {
+                const monday = parseFloat(document.getElementById('monday').value) || 0;
+                const tuesday = parseFloat(document.getElementById('tuesday').value) || 0;
+                const wednesday = parseFloat(document.getElementById('wednesday').value) || 0;
+                const thursday = parseFloat(document.getElementById('thursday').value) || 0;
+                const friday = parseFloat(document.getElementById('friday').value) || 0;
+                const salaryInput = document.getElementById('salary').value.replace(/[$,]/g, '');
+                const salary = parseFloat(salaryInput) || 0;
+                const contractMonths = document.querySelector('input[name="contract"]:checked').value;
+                const weeklyMinutes = monday + tuesday + wednesday + thursday + friday;
+                const weeklyHours = weeklyMinutes / 60; // Calculate weeklyHours here
+
+                const inputData = { monday, tuesday, wednesday, thursday, friday, salary, contractMonths, weeklyMinutes };
+
+                if (salary === 0) {
+                    // We'll skip tracking the error event to simplify
+                    resultAmountEl.textContent = '$0';
+                    resultContainer.classList.remove('hidden');
+                    return;
+                }
+
+                const workDays = contractMonths === '12' ? 230 : 180;
+                const perDiemRate = salary / workDays;
+                const hourlyRate = perDiemRate / 8;
+                const workWeeks = workDays / 5;
+                const annualCost = weeklyHours * workWeeks * hourlyRate;
+
+                // --- FIX IS HERE ---
+                // Added a try...catch block to prevent crashes if location lookup fails.
+                let userLocation = null; // Default to null
+                try {
+                    userLocation = await getUserLocation();
+                } catch (error) {
+                    console.error("Location lookup failed, but we are continuing.", error);
+                }
+                // --- END OF FIX ---
+
+                // This dataLayer.push is now inside the function and will run even if location fails.
+                window.dataLayer.push({
+                  'event': 'enter.roi_calculate',
+                  'roi_data': {
+                    'total_minutes': weeklyMinutes,
+                    'total_hours': weeklyHours,
+                    'salary_value': salary,
+                    'cost_per_year': annualCost,
+                    // This will be null if the lookup failed, which is perfectly fine.
+                    'user_location': userLocation
+                  }
+                });
+
+                resultAmountEl.textContent = `$${Math.round(annualCost).toLocaleString()}`;
+                resultContainer.classList.remove('hidden');
+
+                setTimeout(() => {
+                    resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+
+                trackEvent('calculation_completed', { result: annualCost, salary_range: getSalaryRange(salary) });
+            };
+
+            calculateBtn.addEventListener('click', calculateCost);
+
+            fillButton.addEventListener('click', () => {
+                const mondayValue = document.getElementById('monday').value;
+                ['tuesday', 'wednesday', 'thursday', 'friday'].forEach(day => {
+                    document.getElementById(day).value = mondayValue;
+                });
+                trackEvent('fill_week_used', { value: mondayValue });
+            });
+
+            // Note: Form submission handling removed since we're now using Zoho embedded form
+
+            window.addEventListener('beforeunload', () => {
+                const sessionSummary = {
+                    sessionId: sessionData.sessionId,
+                    totalTimeOnPage: Date.now() - sessionData.startTime,
+                    totalInteractions: sessionData.interactions.length,
+                    totalCalculations: sessionData.calculations.length,
+                    finalData: sessionData
+                };
+
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon('/api/session-end', JSON.stringify(sessionSummary));
+                }
+            });
+        });
+    </script>
+</body>
+</html>

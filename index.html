@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Llama | AI-Powered Substitute Scheduling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFXKM166TZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YFXKM166TZ');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MHHLMPTX');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Expert Style Injections -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #4A5568;
+        }
+        .header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #F57D20, #E07A42);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(224, 122, 66, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(224, 122, 66, 0.4);
+        }
+        .hero-section {
+            background: #ffffff;
+            padding: 8rem 0;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #2D3748;
+            line-height: 1.1;
+        }
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-top: 1rem;
+            color: #718096;
+        }
+        section {
+            padding: 6rem 0;
+        }
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #2D3748;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .feature-card {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial {
+            background-color: #4A3F7A;
+            color: #F8F9FA;
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 15px 30px rgba(74, 63, 122, 0.2);
+        }
+        .testimonial p {
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+        .testimonial footer {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            font-style: normal;
+        }
+        .how-it-works-section {
+            background-color: #ffffff;
+        }
+        .workflow-step {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column for mobile */
+            gap: 2rem; /* Reduced gap for mobile */
+            align-items: center;
+            margin-bottom: 4rem; /* Reduced margin for mobile */
+        }
+        @media (min-width: 768px) { /* Apply two-column layout on medium screens and up */
+            .workflow-step {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+                margin-bottom: 6rem;
+            }
+        }
+        .workflow-step:nth-child(even) .workflow-text {
+             @media (min-width: 768px) {
+                order: 2;
+            }
+        }
+        .workflow-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4A3F7A;
+            margin-bottom: 1rem;
+        }
+        .workflow-visual {
+            background-color: #F8F9FA;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .research-charts img {
+            width: 100%;
+            max-width: 450px;
+            height: auto; /* This ensures aspect ratio is maintained */
+            object-fit: contain; /* This prevents distortion */
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        }
+        .savings-section {
+            background-color: #4A3F7A;
+        }
+        .savings-section h2, .savings-section p {
+            color: #ffffff;
+        }
+        .form-section {
+             background-color: #ffffff;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #E2E8F0;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #4A5568;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #CBD5E0;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #4A3F7A;
+            box-shadow: 0 0 0 3px rgba(74, 63, 122, 0.1);
+        }
+        .footer {
+            background-color: #2D3748;
+            color: #A0AEC0;
+            padding: 4rem 0;
+        }
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+        .footer a {
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHHLMPTX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="nav-left">
+                <a href="index.html" class="nav-logo">
+                    <img src="images/static/hl_transparent.png" alt="Harry Llama Logo">
+                </a>
+            </div>
+            <ul class="nav-menu hidden md:flex space-x-8 text-gray-700 font-semibold">
+                <li><a href="#features" class="hover:text-[#4A3F7A]">Features</a></li>
+                <li><a href="#how-it-works" class="hover:text-[#4A3F7A]">How It Works</a></li>
+                <li><a href="#research" class="hover:text-[#4A3F7A]">The Research</a></li>
+                <li><a href="https://blog.lucid-north.com" target="_blank" rel="noopener" class="hover:text-[#4A3F7A]">Blog</a></li>
+                <li><a href="https://harryllama.lucid-north.com/calculator" class="hover:text-[#4A3F7A]">ROI Calculator</a></li>
+            </ul>
+            <div class="nav-right hidden md:block">
+                <a href="#demo-form" class="btn-primary">Request a Demo</a>
+            </div>
+            <button id="nav-toggle" class="md:hidden nav-toggle" aria-label="Open navigation">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="#features" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">Features</a>
+            <a href="#how-it-works" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">How It Works</a>
+            <a href="#research" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">The Research</a>
+            <a href="https://blog.lucid-north.com" target="_blank" rel="noopener" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">Blog</a>
+            <a href="https://harryllama.lucid-north.com/calculator" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">Calculator</a>
+            <a href="#demo-form" class="block mt-4 btn-primary text-center">Request a Demo</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                <div class="hero-content text-center md:text-left">
+                    <h1 class="text-5xl lg:text-6xl">Stop the 5 - AM Scramble.</h1>
+                    <p class="text-xl lg:text-2xl mt-4">AI-powered substitute scheduling that gives your administrators their day back.</p>
+                    <a href="#demo-form" class="btn-primary mt-8 inline-block">Request a Free Demo</a>
+                </div>
+                <div class="hero-video">
+                    <video class="rounded-2xl shadow-2xl" autoplay loop muted playsinline aria-label="Animation of chaotic lines becoming an organized schedule">
+                        <source src="images/hero_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-proof-section">
+            <div class="container mx-auto px-6">
+                <blockquote class="testimonial">
+                    <p>"Harry Llama gave me back my mornings. The time I used to spend on the substitute puzzle, I now spend outside welcoming students into the building. It's a game-changer."</p>
+                    <footer class="mt-6">
+                        <strong class="block">Brian McManus</strong> - Former High School Assistant Principal
+                        <cite class="block opacity-75">Creator of Harry Llama</cite>
+                    </footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container mx-auto px-6">
+                 <h2 class="text-4xl font-bold text-[#2D3748] mb-12 text-center">Go From Chaos to Control in Minutes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="feature-card text-center">
+                        <img src="images/static/scanAsset3mdpi.png" alt="Document Reading Icon" class="mb-4 w-20 h-20 mx-auto">
+                        <h3 class="text-xl font-bold mb-2 text-[#4A3F7A]">Intelligent Document Reading</h3>
+                        <p class="text-gray-600">Upload your existing schedule PDFs, images, or CSVs. Our AI reads everything, eliminating manual data entry.</p>
+                    </div>
+                    <div class="feature-card text-center">
+                        <img src="images/static/puzzleAsset4mdpi.png" alt="Problem Solving Icon" class="mb-4 w-20 h-20 mx-auto">
+                        <h3 class="text-xl font-bold mb-2 text-[#4A3F7A]">Instant Problem Solving</h3>
+                        <p class="text-gray-600">When an absence occurs, Harry's logic engine instantly analyzes every variable to build the optimal, compliant coverage plan.</p>
+                    </div>
+                    <div class="feature-card text-center">
+                        <img src="images/static/scale2Asset7mdpi.png" alt="Balanced Icon" class="mb-4 w-20 h-20 mx-auto">
+                        <h3 class="text-xl font-bold mb-2 text-[#4A3F7A]">Fair and Balanced</h3>
+                        <p class="text-gray-600">Go beyond simple coverage. Our system automatically balances workloads for teachers and subs, improving morale and retention.</p>
+                    </div>
+                    <div class="feature-card text-center">
+                        <img src="images/static/glass.png" alt="Clarity Icon" class="mb-4 w-20 h-20 mx-auto">
+                        <h3 class="text-xl font-bold mb-2 text-[#4A3F7A]">Real-Time Accuracy</h3>
+                        <p class="text-gray-600">A live dashboard gives you a complete, school-wide view of your coverage status. No more spreadsheets, just control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="bg-gray-100 py-20 md:py-32 text-gray-800">
+    <div class="content-container">
+        <div class="text-center mb-12 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">How It Works</h2>
+            <p class="text-gray-600 mt-4 max-w-3xl mx-auto">A transparent look at our processes, from daily workflows to the core technology.</p>
+            <div class="w-24 h-1 bg-teal-500 mx-auto mt-4"></div>
+        </div>
+
+        <div class="flex justify-center mb-16 fade-in-delay">
+            <div class="flex border-2 border-gray-300 rounded-lg">
+                <button class="tab-btn active font-bold py-2 px-6 rounded-l-md transition-colors duration-300" data-tab="leadership">For Building Leaders</button>
+                <button class="tab-btn font-bold py-2 px-6 rounded-r-md transition-colors duration-300" data-tab="it">For District IT</button>
+            </div>
+        </div>
+
+        <div id="scrolly-container" class="relative">
+
+            <div id="leadership-content" class="tab-content grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="sticky top-24 h-96 lg:h-[70vh] flex items-center justify-center">
+                    <div class="scrolly-diagram active" data-step="1">
+                         <pre class="mermaid">
+                            flowchart TD
+                                A[Start Onboarding] --> B[Step 1: School Information];
+                                B --> C[Step 1.5: Configure Period Types];
+                                C --> D[Step 2: Upload Bell Schedule PDF];
+                                D --> F[Step 2: Confirm Parsed Templates];
+                                F --> H[Step 3: Upload Master Schedule CSV];
+                                H --> J[Step 4: Review Co-Teaching Pairs];
+                                J --> L[Step 5: Finalize Teacher Schedules];
+                                L --> M[Step 6: Academic Calendar Setup];
+                                M --> N[Step 7: Final System Confirmation];
+                                N --> O[Dashboard Ready];
+                         </pre>
+                    </div>
+                    <div class="scrolly-diagram" data-step="2">
+                        <pre class="mermaid">
+                            flowchart TD
+                                A[Morning: Access Dashboard] --> B{Any Absences Today?};
+                                B -->|Yes| D[Upload Absence Report PDF];
+                                D --> G[Automatic Coverage Plan Generation];
+                                G --> I[Review & Approve Plan];
+                                I --> M[Notify Staff of Assignments];
+                                M --> N[Monitor Coverage Throughout Day];
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="scrolly-story space-y-96">
+                    <div class="scrolly-step p-8 rounded-lg" data-step="1">
+                        <h3 class="text-2xl font-bold mb-3">The Foundation</h3>
+                        <p>It all starts with a simple, guided setup. Harry walks you through each step, from basic school info to uploading your master schedule, to ensure a seamless start.</p>
+                    </div>
+                    <div class="scrolly-step p-8 rounded-lg" data-step="2">
+                        <h3 class="text-2xl font-bold mb-3">The Daily Routine</h3>
+                        <p>What used to take hours now takes minutes. When an absence is reported, Harry's intelligent processing generates a complete coverage plan for your review and approval.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="it-content" class="tab-content hidden grid grid-cols-1 lg:grid-cols-2 gap-16">
+                 <div class="sticky top-24 h-96 lg:h-[70vh] flex items-center justify-center">
+                    <div class="scrolly-diagram active" data-step="5">
+                        <img src="images/core_architecture_flowchart.png" alt="System Architecture Diagram" class="max-h-full rounded-lg">
+                    </div>
+                    <div class="scrolly-diagram" data-step="6">
+                        <pre class="mermaid">
+                            flowchart LR
+                                subgraph "Data Sources"
+                                    A[PDFs, CSVs, Forms]
+                                end
+                                subgraph "Processing Pipeline"
+                                    E[AI Vision & Parsing]
+                                end
+                                subgraph "Core Database"
+                                    K[SQL Database]
+                                end
+                                subgraph "Output Systems"
+                                    V[Dashboards & Reports]
+                                end
+                                A --> E --> K --> V
+                        </pre>
+                    </div>
+                </div>
+                 <div class="scrolly-story space-y-96">
+                    <div class="scrolly-step p-8 rounded-lg" data-step="5">
+                        <h3 class="text-2xl font-bold mb-3">The Blueprint</h3>
+                        <p>The system is built on a modern, layered architecture for clear separation of concerns, ensuring reliability and scalability using a Flask and SQLAlchemy backend.</p>
+                    </div>
+                    <div class="scrolly-step p-8 rounded-lg" data-step="6">
+                        <h3 class="text-2xl font-bold mb-3">The Data Pipeline</h3>
+                        <p>Data flows through an intelligent and secure pipeline. It starts with ingesting various data sources and ends with clear, actionable insights on the user's dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scrollytelling behavior: tabs, active step/diagram switching, and mermaid re-init for hidden content -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Tab handling
+    const tabButtons = Array.from(document.querySelectorAll('.tab-btn'));
+    const tabContents = {
+      leadership: document.getElementById('leadership-content'),
+      it: document.getElementById('it-content')
+    };
+
+    let currentTab = 'leadership';
+    let observer = null;
+
+    function activateTab(tabName) {
+      currentTab = tabName;
+      tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabName));
+      Object.keys(tabContents).forEach(key => {
+        const el = tabContents[key];
+        if (!el) return;
+        if (key === tabName) el.classList.remove('hidden'); else el.classList.add('hidden');
+      });
+
+      // Re-render any mermaid diagrams in the newly visible tab
+      try {
+        const mermaidEls = tabContents[tabName].querySelectorAll('.mermaid');
+        if (mermaidEls.length) mermaid.init(undefined, mermaidEls);
+      } catch (e) { console.warn('Mermaid re-init failed:', e); }
+
+      // (re)connect scroll observer for the active tab's story
+      connectObserverForTab(tabName);
+    }
+
+    tabButtons.forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
+
+    // Scrollytelling: observe steps and toggle active classes
+    function connectObserverForTab(tabName) {
+      // disconnect existing
+      if (observer) observer.disconnect();
+
+      const story = tabContents[tabName].querySelector('.scrolly-story');
+      const steps = story ? Array.from(story.querySelectorAll('.scrolly-step')) : [];
+
+      const diagrams = tabContents[tabName].querySelectorAll('.scrolly-diagram');
+
+      if (!steps.length) return;
+
+      observer = new IntersectionObserver((entries) => {
+        // Find the entry that is most centered (largest intersectionRatio) or above threshold
+        const visible = entries.filter(e => e.isIntersecting).sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const activeStep = visible.target.dataset.step;
+
+        // Toggle step active states
+        steps.forEach(s => s.classList.toggle('active', s.dataset.step === activeStep));
+
+        // Toggle diagram active states
+        diagrams.forEach(d => d.classList.toggle('active', d.dataset.step === activeStep));
+      }, {
+        root: null,
+        rootMargin: '0px 0px -30% 0px',
+        threshold: [0.25, 0.5, 0.75]
+      });
+
+      steps.forEach(s => observer.observe(s));
+
+      // Set initial active state (first step)
+      const first = steps[0];
+      if (first) {
+        steps.forEach(s => s.classList.toggle('active', s === first));
+        diagrams.forEach(d => d.classList.toggle('active', d.dataset.step === first.dataset.step));
+      }
+    }
+
+    // Initialize
+    activateTab(currentTab);
+  });
+</script>
+
+        <section id="research" class="research-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-[#2D3748] mb-12 text-center">The Data Doesn't Lie</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                     <div class="research-content text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-[#4A3F7A] mb-4">The "Friday Rush" is Real.</h3>
+                        <p>Our research shows that the time spent on sub coverage spikes by over 40% on Fridays. What starts as a scramble becomes a frantic rush, pulling you away from students and staff before the weekend.</p>
+                    </div>
+                    <div class="research-charts flex justify-center">
+                        <img src="images/charts/hours_spent.png" alt="Chart showing hours spent on sub coverage" class="rounded-xl shadow-lg">
+                    </div>
+                     <div class="research-charts flex justify-center md:order-first">
+                        <img src="images/charts/friday_rush_colorized.png" alt="Chart showing hours spent on scheduling" class="rounded-xl shadow-lg">
+                    </div>
+                    <div class="research-content text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-[#4A3F7A] mb-4">Reclaim 99+ Hours Every School Year.</h3>
+                        <p>On average, administrators waste over $5,800 in salary-equivalent hours annually on manual scheduling. Harry Llama automates the process, giving that time and focus back to instructional leadership.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="savings-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl">See Your School's Potential Savings</h2>
+                <p class="text-xl mt-4 max-w-2xl mx-auto">Our platform doesn't just save time—it saves money. Discover how much your school can reinvest into what truly matters.</p>
+                <a href="/calculator" class="btn-primary mt-8 inline-block">Calculate My Savings</a>
+            </div>
+        </section>
+
+        <section id="demo-form" class="form-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl">Ready to Reclaim Your Day?</h2>
+                <!-- Zoho Form Embed -->
+                <div class="max-w-2xl mx-auto mt-8">
+                    <iframe aria-label='Schedule a Demo of Harry Llama' frameborder="0" style="height:500px;width:100%;border:none;" src='https://forms.zohopublic.com/adminlucid1/form/ProductEnquiry1/formperma/3HXAs7BzgzgM38Q_ZqnonNVNBbCXalU8AfqCa7Nl0bw'></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container mx-auto px-6 text-center">
+            <div class="footer-logo">
+                <a href="#">
+                   <img src="images/static/hl_transparent.png" alt="Harry Llama Logo" class="mx-auto">
+                </a>
+            </div>
+            <div class="footer-legal my-4">
+                <p>&copy; 2025 Lucid North. All Rights Reserved.</p>
+                <a href="#" class="mx-2">Privacy Policy</a> | <a href="#" class="mx-2">Terms of Service</a>
+            </div>
+            <div class="footer-contact flex justify-center items-center space-x-4">
+                <a href="#" class="js-mailto" data-user="admin" data-domain="lucid-north.com">Email us</a>
+                 <a href="#" aria-label="LinkedIn">
+                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                 </a>
+             </div>
+         </div>
+     </footer>
+
+    <script>
+         // Mermaid Initialization
+         mermaid.initialize({
+             startOnLoad: true,
+             theme: 'base',
+             themeVariables: {
+                 'primaryColor': '#4A3F7A', /* Purple for primary elements */
+                 'primaryTextColor': '#FFFFFF',
+                 'secondaryColor': '#EF8A30', /* Orange for secondary elements/bars */
+                 'tertiaryColor': '#E06B1E', /* Accent Orange */
+                 'lineColor': '#88A2B8', /* Lucid North Solution gray-blue for lines/axes */
+                 'fontFamily': 'Inter, sans-serif'
+             }
+         });
+
+         // Mobile Menu Toggle
+         const navToggle = document.getElementById('nav-toggle');
+         const mobileMenu = document.getElementById('mobile-menu');
+         navToggle.addEventListener('click', () => {
+             mobileMenu.classList.toggle('hidden');
+         });
+     </script>
+
+    <!-- JS-built mailto helper (keeps email out of static HTML) -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var els = document.querySelectorAll('.js-mailto');
+        els.forEach(function (el) {
+          var user = el.dataset.user || 'admin';
+          var domain = el.dataset.domain || 'lucid-north.com';
+          var email = user + '@' + domain;
+          el.textContent = email;
+          el.href = 'mailto:' + email;
+          el.setAttribute('aria-label', 'Email ' + email);
+        });
+      });
+    </script>
+</body>
+</html>

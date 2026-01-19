@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title | Lucid North</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MHHLMPTX');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #4A5568;
+        }
+        .header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #F57D20, #E07A42);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(224, 122, 66, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(224, 122, 66, 0.4);
+        }
+        .footer {
+            background-color: #2D3748;
+            color: #A0AEC0;
+            padding: 4rem 0;
+        }
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+        .footer a {
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHHLMPTX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="nav-left">
+                <a href="index.html" class="nav-logo">
+                    <img src="images/static/hl_transparent.png" alt="Site Logo">
+                </a>
+            </div>
+            <ul class="nav-menu hidden md:flex space-x-8 text-gray-700 font-semibold">
+                <li><a href="https://harryllama.lucid-north.com/results.html#features" class="hover:text-[#4A3F7A]">Features</a></li>
+                <li><a href="https://harryllama.lucid-north.com/results.html#how-it-works" class="hover:text-[#4A3F7A]">How It Works</a></li>
+                <li><a href="https://harryllama.lucid-north.com/results.html#research" class="hover:text-[#4A3F7A]">The Research</a></li>
+                <li><a href="https://blog.lucid-north.com" target="_blank" rel="noopener" class="hover:text-[#4A3F7A]">Blog</a></li>
+                <li><a href="calculator" class="hover:text-[#4A3F7A]">Calculator</a></li>
+            </ul>
+            <div class="nav-right hidden md:block">
+                <a href="#demo-form" class="btn-primary">Request a Demo</a>
+            </div>
+            <button id="nav-toggle" class="md:hidden nav-toggle" aria-label="Open navigation">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="https://harryllama.lucid-north.com/results.html#features" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">Features</a>
+            <a href="https://harryllama.lucid-north.com/results.html#how-it-works" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">How It Works</a>
+            <a href="https://harryllama.lucid-north.com/results.html#research" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">The Research</a>
+            <a href="https://blog.lucid-north.com" target="_blank" rel="noopener" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">Blog</a>
+            <a href="calculator" class="block text-gray-700 font-semibold hover:text-[#4A3F7A]">Calculator</a>
+            <a href="#demo-form" class="block mt-4 btn-primary text-center">Request a Demo</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page-specific content goes here -->
+        <section class="container mx-auto px-6 py-12">
+            <h1 class="text-4xl font-bold mb-6">Page Title</h1>
+            <p class="text-lg text-gray-600">Welcome! Replace this section with your page content.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container mx-auto px-6 text-center">
+            <div class="footer-logo">
+                <img src="images/static/hl_transparent.png" alt="Site Logo">
+            </div>
+            <p>&copy; 2025 Lucid North. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
